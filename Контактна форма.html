@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Contact</title>
+        <link rel="stylesheet" href="style5.css">
+    </head>
+    <body>
+        <header>
+            <img src="Black_and_Brown_Minimalist_Illustrative_Horse_Club_Logo-copy-removebg-preview.png">
+            <nav>
+                <ul>
+                    <li><a href="Начало.html">Начало</a></li>
+                    <li><a href="Нашите коне.html">Нашите коне</a></li>
+                    <li><a href="Събития.html">Събития</a></li>
+                    <li><a href="Услуги.html">Услуги</a></li>
+                    <li><a href="Контактна форма.html">Контакти</a></li>
+                </ul>
+            </nav>
+            <button id="themeToggle" aria-label="Смени тема">
+                <span id="themeIcon">🌙</span>
+              </button>    
+              <script>
+                const themeToggle = document.getElementById('themeToggle');
+                const themeIcon = document.getElementById('themeIcon');
+              
+                function updateIcon() {
+                  themeIcon.textContent = document.body.classList.contains('dark-theme') ? '🌞' : '🌙';
+                }
+                
+                if (localStorage.getItem('theme') === 'dark') {
+                  document.body.classList.add('dark-theme');
+                }
+                updateIcon();
+              
+                themeToggle.addEventListener('click', () => {
+                  document.body.classList.toggle('dark-theme');
+                  updateIcon();
+                  localStorage.setItem('theme', document.body.classList.contains('dark-theme') ? 'dark' : 'light');
+                });
+              </script>
+        </header>
+        <br>
+            <main>
+        <form id="contactForm">
+            <label for="name">Име<span>*</span></label>
+            <br>
+            <input type="text" id="name" name="name" placeholder="Въведи име">
+            <br>
+            <br>
+            <label for="email">Имейл<span>*</span></label>
+            <br>
+            <input type="text" id="email" name="eamil" placeholder="Въведи имейл">
+            <br>
+            <br>
+            <label for="telephone">Телефон<span>*</span></label>
+            <br>
+            <input type="tel" id="phone" name="phone" placeholder="Въведи тел.номер">
+            <br>
+            <br>
+            <label for="text">Запитване</label>
+            <br>
+            <textarea type="text" id="name" name="text"></textarea>
+            <br>
+            <br>
+            <button type="submit">Изпрати</button>
+        </form>
+        <div id="formMessage" class="form-message"></div>
+            <script>
+                document.getElementById('contactForm').addEventListener('submit', function(e) {
+                  e.preventDefault(); 
+              
+                  const name = document.getElementById('name').value;
+              
+                  document.getElementById('formMessage').textContent = `Благодарим ти, ${name}! Ще се свържем с теб скоро.`;
+                  document.getElementById('formMessage').style.display = 'block';
+              
+                  this.reset();
+                  setTimeout(() => {
+  document.getElementById('formMessage').style.display = 'none';
+}, 5000); // 
+
+                });
+              </script>
+        <section class="social-media">
+            <h2>Свържете се с нас</h2>
+            <a href="https://www.facebook.com/KDhorseclub" >
+                <img src="social-media.png" alt="Facebook">
+            </a>
+            <a href="https://www.instagram.com/KDhorseclub" >
+                <img src="video.png" alt="Instagram">
+            </a>
+        </section>
+            </main>
+            <br>
+            <footer>
+                <div class="footer-content">
+                    <p>&copy; 2025 K&D Horse Club. Всички права запазени.</p>
+                    <ul>
+                        <li><a href="Политика_за_поверителност.html">Политика за поверителност</a></li>
+                        <li><a href="Условия_за_използване.html">Условия за използване</a></li>
+                    </ul>
+                </div>
+            </footer>
+    </body>
+</html>

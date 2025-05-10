@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <title>Орис</title>
+    <link rel="stylesheet" href="style6.css">
+</head>
+<body>
+    <header>
+        <img src="Black_and_Brown_Minimalist_Illustrative_Horse_Club_Logo-copy-removebg-preview.png" alt="K&D Horse Club Logo" class="logo">
+        <nav>
+            <ul>
+                <li><a href="Начало.html">Начало</a></li>
+                <li><a href="Нашите коне.html">Нашите коне</a></li>
+                <li><a href="Събития.html">Събития</a></li>
+                <li><a href="Услуги.html">Услуги</a></li>
+                <li><a href="Контактна форма.html">Контакти</a></li>
+            </ul>
+        </nav>
+        <button id="themeToggle" aria-label="Смени тема">
+            <span id="themeIcon">🌙</span>
+        </button>
+        <script>
+            const themeToggle = document.getElementById('themeToggle');
+            const themeIcon = document.getElementById('themeIcon');
+          
+            function updateIcon() {
+              themeIcon.textContent = document.body.classList.contains('dark-theme') ? '🌞' : '🌙';
+            }
+            
+            if (localStorage.getItem('theme') === 'dark') {
+              document.body.classList.add('dark-theme');
+            }
+            updateIcon();
+          
+            themeToggle.addEventListener('click', () => {
+              document.body.classList.toggle('dark-theme');
+              updateIcon();
+              localStorage.setItem('theme', document.body.classList.contains('dark-theme') ? 'dark' : 'light');
+            });
+          </script>        
+    </header>
+    <br>
+    <main>
+        <section class="horse-info">
+            <img src="483163443_924032136469716_3039016234554086372_n.jpg" alt="Орис" class="horse-image">
+            <div class="horse-details">
+                <h2>Име: Орис Ван Хет Кастенхов</h2>
+                <p><strong>Дата на раждане:</strong> 04.12.2021</p>
+                <p><strong>Произход:</strong> България</p>
+            </div>
+        </section>
+
+        <section class="pedigree">
+            <h3>РОДОСЛОВИЕ / PEDIGREE</h3>
+            <table>
+                <tr>
+                    <td rowspan="4">Ocean Van Het Castaneahof</td>
+                    <td rowspan="2">Zambesi</td>
+                    <td>Heartbreaker</td>
+                </tr>
+                <tr>
+                    <td>Calanda Z</td>
+                </tr>
+                <tr>
+                    <td rowspan="2">Alegria Van De Dennehoeve</td>
+                    <td>Silvio I</td>
+                </tr>
+                <tr>
+                    <td>Rebekka Van De Kempenhoeve</td>
+                </tr>
+                <tr>
+                    <td rowspan="4">Simona, 2013, Български спортен кон</td>
+                    <td rowspan="2">C’est Mon Ami, 2002</td>
+                    <td>Candillo</td>
+                </tr>
+                <tr>
+                    <td>Wentje</td>
+                </tr>
+                <tr>
+                    <td rowspan="2">Cindy (GER), 2005</td>
+                    <td>Centus</td>
+                </tr>
+                <tr>
+                    <td>Concordia</td>
+                </tr>
+            </table>
+        </section>
+    </main>
+<br>
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2025 K&D Horse Club. Всички права запазени.</p>
+            <ul>
+                <li><a href="Политика_за_поверителност.html">Политика за поверителност</a></li>
+                <li><a href="Условия_за_използване.html">Условия за използване</a></li>
+            </ul>
+        </div>
+    </footer>
+</body>
+</html>

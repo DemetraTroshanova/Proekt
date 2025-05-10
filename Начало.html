@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Main page</title>
+    <link rel="stylesheet" href="style1.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <img src="Black_and_Brown_Minimalist_Illustrative_Horse_Club_Logo-copy-removebg-preview.png" alt="logo" class="logo">
+            <ul>
+                <li><a href="Начало.html">Начало</a></li>
+                <li><a href="Нашите коне.html">Нашите коне</a></li>
+                <li><a href="Събития.html">Събития</a></li>
+                <li><a href="Услуги.html">Услуги</a></li>
+                <li><a href="Контактна форма.html">Контакти</a></li>
+            </ul>
+        </nav>
+        <button id="themeToggle" aria-label="Смени тема">
+          <span id="themeIcon">🌙</span>
+        </button>    
+        <script>
+          const themeToggle = document.getElementById('themeToggle');
+          const themeIcon = document.getElementById('themeIcon');
+        
+          function updateIcon() {
+            themeIcon.textContent = document.body.classList.contains('dark-theme') ? '🌞' : '🌙';
+          }
+          
+          if (localStorage.getItem('theme') === 'dark') {
+            document.body.classList.add('dark-theme');
+          }
+          updateIcon();
+        
+          themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-theme');
+            updateIcon();
+            localStorage.setItem('theme', document.body.classList.contains('dark-theme') ? 'dark' : 'light');
+          });
+        </script>
+    </header>
+
+    <main>
+        <div class="video-container">
+            <video autoplay muted loop playsinline>
+                <source src="6010155_Animal_Horse_4096x2160.mp4" type="video/mp4">
+            </video>
+            <h1 class="video-title">Добре дошли в конна база K&D horse club</h1>
+            <button onclick="window.location.href='Услуги.html';">Езда</button>
+        </div>
+        <br>
+        <div class="highlight-box">
+          <p class="base-text">
+            <strong>Конната база е създадена през 2004 година.</strong> Базата предлага на своите посетители преход за начинаещи сред природата, обучения, както и езда за по-напреднали.
+          </p>
+          <p class="base-text">
+            Каним Ви да бъдете част от нашето приключение и заедно да опознаваме природата, докато се радваме на любимите ни животни.
+          </p>
+          <p class="base-text">
+            <strong>Конната база с клуб по конен спорт</strong> се намира в сърцето на планината Родопи, където всеки посетител се влюбва в природата и тя остава в спомените му за цял живот.
+          </p>
+          <p class="base-text">
+            Тук също така можете да посетите много известни забележителности и прекрасни градчета, кипящи от сърцати и добри хора.
+          </p>
+        </div>        
+        <div class="button-row">
+        <button onclick="window.location.href='услуги.html';">Услуги</button>
+        <button onclick="window.location.href='Събития.html';">Събития</button>
+        </div>
+
+        <h2 style="padding-left: 20px;">Нашите коне</h2>
+
+        <div id="slideshow">
+          <div class="slide showing">
+            <img src="483163443_924032136469716_3039016234554086372_n.jpg" alt="Кон 1">
+            <p class="caption">Това е нашият прекрасен кон Орис!</p>
+          </div>
+          <div class="slide">
+            <img src="484490824_1250609886402272_1820481786070480988_n.jpg" alt="Кон 2">
+            <p class="caption">Ето го Океан – един от най-бързите ни коне!</p>
+          </div>
+          <div class="slide">
+            <img src="483479636_1193514355459979_3595354270535755563_n.jpg" alt="Кон 3">
+            <p class="caption">Запознайте се с Дейзи – нежна и умна кобила!</p>
+          </div>
+        </div>
+        
+        <div class="controls">
+          <button onclick="prevSlide()">← Назад</button>
+          <button onclick="nextSlide()">Напред →</button>
+        </div>
+        
+        <script>
+          let slides = document.querySelectorAll('.slide');
+          let current = 0;
+          let slideInterval = setInterval(nextSlide, 4000);
+        
+          function showSlide(index) {
+            slides[current].classList.remove('showing');
+            current = (index + slides.length) % slides.length;
+            slides[current].classList.add('showing');
+          }
+        
+          function nextSlide() {
+            showSlide(current + 1);
+          }
+        
+          function prevSlide() {
+            showSlide(current - 1);
+          }
+        
+          document.querySelectorAll('.controls button').forEach(btn => {
+            btn.addEventListener('click', () => {
+              clearInterval(slideInterval);
+              slideInterval = setInterval(nextSlide, 4000);
+            });
+          });
+        </script>
+        
+        
+        <button onclick="window.location.href='Нашите коне.html';">Виж повече</button>
+        <br>
+    </main>
+    <section class="location">
+        <h2 style="padding-left: 20px;">Как да ни намерите</h2>
+        <br>
+        <iframe src="https://www.google.com/maps/embed?pb=...your-map-link..." width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+    </section>
+    <footer>
+      <div class="footer-content">
+          <p>&copy; 2025 K&D Horse Club. Всички права запазени.</p>
+          <br>
+          <ul>
+              <li><a href="Политика_за_поверителност.html">Политика за поверителност</a></li>
+              <li><a href="Условия_за_използване.html">Условия за използване</a></li>
+          </ul>
+      </div>
+  </footer>
+</body>
+</html>

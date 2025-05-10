@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Events</title>
+        <link rel="stylesheet" href="style3.css">
+    </head>
+    <body>
+        <header>
+            <img src="Black_and_Brown_Minimalist_Illustrative_Horse_Club_Logo-copy-removebg-preview.png">
+            <nav>
+                <ul>
+                    <li><a href="Начало.html">Начало</a></li>
+                    <li><a href="Нашите коне.html">Нашите коне</a></li>
+                    <li><a href="Събития.html">Събития</a></li>
+                    <li><a href="Услуги.html">Услуги</a></li>
+                    <li><a href="Контактна форма.html">Контакти</a></li>
+                </ul>
+            </nav>
+            <button id="themeToggle" aria-label="Смени тема">
+                <span id="themeIcon">🌙</span>
+              </button>    
+              <script>
+                const themeToggle = document.getElementById('themeToggle');
+                const themeIcon = document.getElementById('themeIcon');
+              
+                function updateIcon() {
+                  themeIcon.textContent = document.body.classList.contains('dark-theme') ? '🌞' : '🌙';
+                }
+                
+                if (localStorage.getItem('theme') === 'dark') {
+                  document.body.classList.add('dark-theme');
+                }
+                updateIcon();
+              
+                themeToggle.addEventListener('click', () => {
+                  document.body.classList.toggle('dark-theme');
+                  updateIcon();
+                  localStorage.setItem('theme', document.body.classList.contains('dark-theme') ? 'dark' : 'light');
+                });
+              </script>
+                        
+        </header>
+        <main>
+            <h1>Събития</h1>
+
+            <div class="filters">
+                <button onclick="filterEvents('всички')">Всички</button>
+                <button onclick="filterEvents('обучение')">Обучения</button>
+                <button onclick="filterEvents('разходка')">Разходки</button>
+                <button onclick="filterEvents('турнир')">Състезания</button>
+            </div>
+        
+            <div class="event-card" data-category="обучение">
+                <h3 onclick="toggleDetails(this)">Обучение по езда за деца</h3>
+                <div class="event-description">
+                    <p>Дата: 1 май 2025<br>Практически занимания с инструктори.</p>
+                    <button onclick="signUp(this)">Запиши се</button>
+                </div>
+            </div>
+
+            <div class="event-card" data-category="разходка">
+                <h3 onclick="toggleDetails(this)">Съботна разходка</h3>
+                <div class="event-description">
+                    <p>Дата: 27 април 2025<br>Маршрут из Родопите + пикник.</p>
+                    <button onclick="signUp(this)">Запиши се</button>
+                </div>
+            </div>
+        
+        
+            <div class="event-card" data-category="турнир">
+                <h3 onclick="toggleDetails(this)">Прескачане на препядствия</h3>
+                <div class="event-description">
+                    <p>Дата: 12 април 2025<br>Състезания и награди!</p>
+                    <button onclick="signUp(this)">Запиши се</button>
+                </div>
+            </div>
+        
+            <div id="message" class="message"></div>
+            <script>
+                function toggleDetails(header) {
+                    const card = header.parentElement;
+                    card.classList.toggle('open');
+                }
+            
+                function filterEvents(category) {
+                    const events = document.querySelectorAll('.event-card');
+                    events.forEach(card => {
+                        if (category === 'всички' || card.dataset.category === category) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                }
+            
+                function signUp(button) {
+                    const message = document.getElementById('message');
+                    const title = button.closest('.event-card').querySelector('h3').textContent;
+                    message.textContent = `Успешно се записахте за събитието: "${title}"!`;
+                    setTimeout(() => {
+                        message.textContent = '';
+                    }, 4000);
+                }
+            </script>
+            <h2>Календар на събитията</h2>
+            <div class="calendar-header">
+                <button onclick="prevMonth()">&#8592; Предишен</button>
+                <span id="month-name"></span>
+                <button onclick="nextMonth()">Следващ &#8594;</button>
+            </div>
+            <div id="calendar"></div>
+            <div id="event-details" class="event-details"></div>
+            
+            <script>
+                const eventData = {
+                    "2025-05-01": "Обучение по езда за деца",
+                    "2025-04-27": "Съботна разходка из Родопите",
+                    "2025-04-12": "Състезание по прескачане на препятствия"
+                };
+            
+                const monthNames = [
+                    "Януари", "Февруари", "Март", "Април", "Май", "Юни",
+                    "Юли", "Август", "Септември", "Октомври", "Ноември", "Декември"
+                ];
+            
+                let currentYear = new Date().getFullYear();
+                let currentMonth = new Date().getMonth();
+            
+                function generateCalendar(year, month) {
+                    const calendar = document.getElementById("calendar");
+                    const details = document.getElementById("event-details");
+                    const monthName = document.getElementById("month-name");
+            
+                    calendar.innerHTML = "";
+                    details.style.display = "none";
+            
+                    monthName.textContent = `${monthNames[month]} ${year}`;
+            
+                    const date = new Date(year, month, 1);
+                    const daysInMonth = new Date(year, month + 1, 0).getDate();
+            
+                    for (let i = 0; i < date.getDay(); i++) {
+                        const emptyCell = document.createElement("div");
+                        calendar.appendChild(emptyCell);
+                    }
+            
+                    for (let day = 1; day <= daysInMonth; day++) {
+                        const cell = document.createElement("div");
+                        cell.className = "day";
+                        const dateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+                        cell.textContent = day;
+            
+                        if (eventData[dateStr]) {
+                            cell.classList.add("event");
+                            cell.onclick = () => {
+                                details.style.display = "block";
+                                details.innerHTML = `<strong>${dateStr}</strong>: ${eventData[dateStr]}`;
+                            };
+                        }
+            
+                        calendar.appendChild(cell);
+                    }
+                }
+            
+                function prevMonth() {
+                    currentMonth--;
+                    if (currentMonth < 0) {
+                        currentMonth = 11;
+                        currentYear--;
+                    }
+                    generateCalendar(currentYear, currentMonth);
+                }
+            
+                function nextMonth() {
+                    currentMonth++;
+                    if (currentMonth > 11) {
+                        currentMonth = 0;
+                        currentYear++;
+                    }
+                    generateCalendar(currentYear, currentMonth);
+                }
+            
+                generateCalendar(currentYear, currentMonth);
+            </script>
+            
+                        
+        </main>
+        <br>
+        <footer>
+            <div class="footer-content">
+                <p>&copy; 2025 K&D Horse Club. Всички права запазени.</p>
+                <ul>
+                    <li><a href="Политика_за_поверителност.html">Политика за поверителност</a></li>
+                    <li><a href="Условия_за_използване.html">Условия за използване</a></li>
+                </ul>
+            </div>
+        </footer>
+    </body>
+</html>

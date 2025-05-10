@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="UTF-8">
+    <title>Океан</title>
+    <link rel="stylesheet" href="style7.css">
+    </head>
+    <body>
+        <header>
+            <img src="Black_and_Brown_Minimalist_Illustrative_Horse_Club_Logo-copy-removebg-preview.png">
+            <nav>
+                <ul>
+                    <li><a href="Начало.html">Начало</a></li>
+                    <li><a href="Нашите коне.html">Нашите коне</a></li>
+                    <li><a href="Събития.html">Събития</a></li>
+                    <li><a href="Услуги.html">Услуги</a></li>
+                    <li><a href="Контактна форма.html">Контакти</a></li>
+                </ul>
+            </nav>
+            <button id="themeToggle" aria-label="Смени тема">
+                <span id="themeIcon">🌙</span>
+            </button>
+            <script>
+                const themeToggle = document.getElementById('themeToggle');
+                const themeIcon = document.getElementById('themeIcon');
+              
+                function updateIcon() {
+                  themeIcon.textContent = document.body.classList.contains('dark-theme') ? '🌞' : '🌙';
+                }
+                
+                if (localStorage.getItem('theme') === 'dark') {
+                  document.body.classList.add('dark-theme');
+                }
+                updateIcon();
+              
+                themeToggle.addEventListener('click', () => {
+                  document.body.classList.toggle('dark-theme');
+                  updateIcon();
+                  localStorage.setItem('theme', document.body.classList.contains('dark-theme') ? 'dark' : 'light');
+                });
+              </script>        
+        </header>
+        <br>
+        <main>
+            <section class="horse-info">
+            <img src="484490824_1250609886402272_1820481786070480988_n.jpg" alt="Океан" class="horse-image">
+            <div class="horse-details">
+            <h2>Име: Океан Ван Хет Кастенхоф</h2>
+            <p><strong>Дата на раждане:</strong>20.05.2014</p>
+            <p><strong>Произход:</strong> България</p>
+            </div>
+
+            </section>
+            <section class="pedigree">
+            <h3>РОДОСЛОВИЕ / PEDIGREE</h3>
+            <table>
+                <tr>
+                <td rowspan="4">Zambesi</td>
+                <td rowspan="2">Heartbreaker</td>
+                <td>Nimmerdor</td>
+                </tr>
+                <tr>
+                   <td>Bacarole</td>
+                </tr>
+                <tr>
+                <td rowspan="2">Calanda Z</td>
+                <td>Calvaro Z</td>
+                </tr>
+                <tr>
+                    <td>Alanda</td>
+                </tr>
+                <tr>
+                    <td rowspan="4">Alegria Van De Dennehoeve</td>
+                    <td rowspan="2">Silvio I</td>
+                    <td>Sandro</td>
+                    </tr>
+                    <tr>
+                       <td>Gelbkatze</td>
+                    </tr>
+                    <tr>
+                    <td rowspan="2">Rebekka Van De Kempenhoeve</td>
+                    <td>Jokinal De Bornival</td>
+                    </tr>
+                    <tr>
+                        <td>Evolta</td>
+                    </tr>
+            </table>
+            </section>
+        </main>
+        <br>
+        <footer>
+            <div class="footer-content">
+                <p>&copy; 2025 K&D Horse Club. Всички права запазени.</p>
+                <ul>
+                    <li><a href="Политика_за_поверителност.html">Политика за поверителност</a></li>
+                    <li><a href="Условия_за_използване.html">Условия за използване</a></li>
+                </ul>
+            </div>
+        </footer>
+    </body>
+</html>

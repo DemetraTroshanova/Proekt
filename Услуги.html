@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Services</title>
+        <link rel="stylesheet" href="style2.css">
+    </head>
+    <body>
+        <header>
+            <img src="Black_and_Brown_Minimalist_Illustrative_Horse_Club_Logo-copy-removebg-preview.png">
+            <nav>
+                <ul>
+                    <li><a href="Начало.html">Начало</a></li>
+                    <li><a href="Нашите коне.html">Нашите коне</a></li>
+                    <li><a href="Събития.html">Събития</a></li>
+                    <li><a href="Услуги.html">Услуги</a></li>
+                    <li><a href="Контактна форма.html">Контакти</a></li>
+                </ul>
+            </nav>
+            <button id="themeToggle" aria-label="Смени тема">
+              <span id="themeIcon">🌙</span>
+            </button>    
+            <script>
+              const themeToggle = document.getElementById('themeToggle');
+              const themeIcon = document.getElementById('themeIcon');
+            
+              function updateIcon() {
+                themeIcon.textContent = document.body.classList.contains('dark-theme') ? '🌞' : '🌙';
+              }
+              
+              if (localStorage.getItem('theme') === 'dark') {
+                document.body.classList.add('dark-theme');
+              }
+              updateIcon();
+            
+              themeToggle.addEventListener('click', () => {
+                document.body.classList.toggle('dark-theme');
+                updateIcon();
+                localStorage.setItem('theme', document.body.classList.contains('dark-theme') ? 'dark' : 'light');
+              });
+            </script>
+        </header>
+        <h1>Услуги</h1>
+        <br>
+            <main>
+              <article>
+                <section>
+                  <h2>Уроци по езда</h2>
+                  <p>Подходящи за деца и възрастни. Нашите лицензирани инструктори ще ви помогнат да направите първите си стъпки в ездата или да усъвършенствате уменията си.</p>
+                </section>
+                <button onclick="togglePrice()" id="toggleButton" class="button-offer">Показвай пакетна цена</button>
+                <p id="priceTag">Цена: 40 лв / урок</p>
+                <img src="full-shot-girl-learning-ride-horse.jpg" alt="Езда за начинаещи">
+                </article>
+          
+              <script>
+                let isSingle = true;
+                function togglePrice() {
+                  const priceTag = document.getElementById("priceTag");
+                  const toggleButton = document.getElementById("toggleButton");
+              
+                  if (isSingle) {
+                    priceTag.textContent = "Цена: 180 лв / пакет от 5 урока";
+                    toggleButton.textContent = "Показвай единична цена";
+                  } else {
+                    priceTag.textContent = "Цена: 40 лв / урок";
+                    toggleButton.textContent = "Показвай пакетна цена";
+                  }
+              
+                  isSingle = !isSingle;
+                }
+              </script>
+
+              <article>
+                <section>
+                  <h2>Разходки сред природата</h2>
+                  <p>Насладете се на спокойствие и красота сред природата с нашите маршрути за езда в планински и полски терени.</p>
+                </section>
+                <button onclick="toggleNatureRidePrice()" id="naturePriceBtn" class="button-offer">Показвай пакетна цена</button>
+                <p id="naturePrice">Цена: 50 лв / 1 час</p>
+                <img src="woman-ridding-horse-countryside.jpg" alt="Разходка с кон сред природата">
+              </article>
+
+              <script>
+                let isStandardPrice = true;
+                function toggleNatureRidePrice() {
+                  const priceEl = document.getElementById("naturePrice");
+                  const btn = document.getElementById("naturePriceBtn");
+              
+                  if (isStandardPrice) {
+                    priceEl.textContent = "Цена: 230 лв / карта за 5 разходки";
+                    btn.textContent = "Показвай стандартна цена";
+                  } else {
+                    priceEl.textContent = "Цена: 50 лв / 1 час";
+                    btn.textContent = "Показвай пакетна цена";
+                  }
+              
+                  isStandardPrice = !isStandardPrice;
+                }
+              </script>
+
+              <article>
+                <section>
+                  <h2>Хипотерапия</h2>
+                  <p>Лечебна езда за деца и възрастни с физически или емоционални затруднения, под контрола на опитни терапевти и обучени коне.</p>
+                </section>
+                <button onclick="toggleTherapyPrice()" id="therapyPriceBtn" class="button-offer">Хипотерапия</button>
+                  <p id="therapyPrice">Цена: 60 лв / сеанс</p>                  
+                <img src="close-up-farmer-with-beautiful-horse.jpg" alt="Хипотерапия">
+              </article>
+
+              <script>
+                let isTherapyPrice = true;
+                function toggleTherapyPrice() {
+                  const priceEl = document.getElementById("therapyPrice");
+                  const btn = document.getElementById("therapyPriceBtn");
+              
+                  if (isTherapyPrice) {
+                    priceEl.textContent = "Цена: 250 лв / 5 сеанса";
+                    btn.textContent = "Показвай единична цена";
+                  } else {
+                    priceEl.textContent = "Цена: 60 лв / сеанс";
+                    btn.textContent = "Показвай пакетна цена";
+                  }
+              
+                  isTherapyPrice = !isTherapyPrice;
+                }
+              </script>
+              
+              <article>
+                <section>
+                  <h2>Празненства и събития</h2>
+                  <p>Организираме рождени дни, тиймбилдинги и тематични събития с участие на коне, езда и забавления за малки и големи.</p>
+                </section>
+                <button onclick="toggleEventPrice()" id="eventPriceBtn" class="button-offer">Празненства и събития</button>
+                  <p id="eventPrice">Цена: 500 лв / събитие</p>
+                <img src="charming-little-girl-dressed-like-princess-rides-horse-around-autumn-forest.jpg" alt="Празници с коне">
+              </article>
+
+              <script>
+                let isStandardEventPrice = true;
+              
+                function toggleEventPrice() {
+                  const priceEl = document.getElementById("eventPrice");
+                  const btn = document.getElementById("eventPriceBtn");
+              
+                  if (isStandardEventPrice) {
+                    priceEl.textContent = "Цена: 1000 лв / голямо събитие";
+                    btn.textContent = "Показвай малка цена";
+                  } else {
+                    priceEl.textContent = "Цена: 500 лв / събитие";
+                    btn.textContent = "Показвай голяма цена";
+                  }
+              
+                  isStandardEventPrice = !isStandardEventPrice;
+                }
+              </script>
+              
+          
+            </main>
+          <footer>
+            <div class="footer-content">
+                <p>&copy; 2025 K&D Horse Club. Всички права запазени.</p>
+                <ul>
+                    <li><a href="Политика_за_поверителност.html">Политика за поверителност</a></li>
+                    <li><a href="Условия_за_използване.html">Условия за използване</a></li>
+                </ul>
+            </div>
+        </footer>
+    </body>
+</html>
